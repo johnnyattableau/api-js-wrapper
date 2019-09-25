@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>UI Example with Sandboxing</title>
+  </head>
+  <body>
+    <iframe id="extension-iframe" sandbox='allow-scripts allow-modals' src='/examples/UInamespaceExample_Popup.html'  style='position:fixed; top:30px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;'></iframe>
+  </body>
+  <script>
+    console.log("UInamespaceExample_Popup.Sandbox.html");
+    let EXTENSION_ID;
+    let extensionWindow;
+
+    window.onload = function () {
+      EXTENSION_ID = "extension-iframe";
+      extensionWindow = document.getElementById(EXTENSION_ID).contentWindow;
+    };
+
+    window.addEventListener("message", receiveMessage, false);
+
+    function receiveMessage(event) {
+      forwardMessage(event);
+    }
+
+    function forwardMessage(event) {
+      let destination = window.opener ? window.opener : window.parent;
+      if (event.source == destination) {
+        extensionWindow.postMessage(event.data, '*');
+      } else {
+        destination.postMessage(event.data, '*');
+      }
+    }
+  </script>
+</html>
+

@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build near.0.0000.0000                                 -->
+<workbook original-version='18.1' source-build='0.0.0 (0000.0.0.0)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AutoCreateAndUpdateDSDPhoneLayouts ignorable='true' predowngraded='true' />
+    <Extensions />
+    <SheetIdentifierTracking ignorable='true' predowngraded='true' />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources />
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources />
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{BD7C5469-B041-4BF4-A4B4-904461235241}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='Dashboard 1'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <zones>
+        <zone h='100000' id='4' type='layout-basic' w='100000' x='0' y='0'>
+          <zone forceUpdate='true' h='82250' id='3' param='[demo.test].[0.1.0].[https://extensions.tableauusercontent.com/sandbox-content/demo.test/test.html]' type='dashboard-object' w='98400' x='800' y='16750'>
+            <add-in add-in-id='demo.test' extension-url='https://extensions.tableauusercontent.com/sandbox-content/demo.test/test.html' extension-version='0.1.0' instance-id='D307D2E3957646C5ADFE13AC66A8CF67'>
+              <instance-settings />
+              <type-settings>
+                <dashboard />
+              </type-settings>
+            </add-in>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone forceUpdate='true' h='15750' id='5' type='text' w='98400' x='800' y='1000'>
+            <formatted-text>
+              <run fontsize='14'>This is a workbook that contains a trex that tries to load sandbox-content. It should be denied, rather than having a 404 resource not found. A 404 result means the test failed.</run>
+            </formatted-text>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='6' type='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='7' param='vert' type='layout-flow' w='98400' x='800' y='1000'>
+                <zone forceUpdate='true' h='15750' id='5' type='text' w='98400' x='800' y='1000'>
+                  <formatted-text>
+                    <run fontsize='14'>This is a workbook that contains a trex that tries to load sandbox-content. It should be denied, rather than having a 404 resource not found. A 404 result means the test failed.</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' h='82250' id='3' param='[demo.test].[0.1.0].[https://extensions.tableauusercontent.com/sandbox-content/demo.test/test.html]' type='dashboard-object' w='98400' x='800' y='16750'>
+                  <add-in add-in-id='demo.test' extension-url='https://extensions.tableauusercontent.com/sandbox-content/demo.test/test.html' extension-version='0.1.0' instance-id='D307D2E3957646C5ADFE13AC66A8CF67'>
+                    <instance-settings />
+                    <type-settings>
+                      <dashboard />
+                    </type-settings>
+                  </add-in>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{2CE78BAA-28D8-4AFD-8933-F501BD0B1479}' />
+    </dashboard>
+  </dashboards>
+  <windows>
+    <window class='worksheet' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{1CF2AD8B-4EA9-4AED-ACA0-13633257D20D}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Dashboard 1'>
+      <viewpoints />
+      <active id='-1' />
+      <simple-id uuid='{CE52C38E-D96A-4C85-8B0A-0664CE5364A5}' />
+    </window>
+  </windows>
+  <referenced-extensions>
+    <referenced-extension>
+      <manifest manifest-version='0.1'>
+        <dashboard-extension extension-version='0.1.0' id='demo.test'>
+          <default-locale>en_US</default-locale>
+          <name resource-id='name' />
+          <description>Local</description>
+          <author email='projectfrelard@tableau.com' name='tableau' organization='tableau' website='https://www.tableau.com' />
+          <min-api-version>1.1</min-api-version>
+          <source-location>
+            <url>https://extensions.tableauusercontent.com/private-content/demo.test/test.html</url>
+          </source-location>
+          <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH4QgLDTYEcBRoeAAABp9JREFUeNrlm01sHEUWx//vVbs79gThjAd2iflIAkEcEARfEciBSYLEbbV8SJaDEpIAMQgkViuirA8IskKcdiEJX3G0C5dNpAVxQLIyiYw4YYIQBw4RBoMgBBIbCRtnOsx0vbcHd9sTZ3r8ge2p2bQ0B/+7unp+1dX/eX71ivL5TgAwAAQAxR/rsiYidvv2btq6ddcqVRwE8JCqgoigqgAAIvpKVbf29v51cHDwUxWRav2pWbdujcH04cUnPFc1EZGOjtv5hRdebv3tt9I+IupWVSaiGBxgJqhqlpnPj42NnchmsxpFUbX+mJORiE9E8eigorEzmohEHR23U1/fO63j47/+nYh2qqpJ4CcHgKEKMPOxIPBfef75PeUwDNPuoclozGxgXdMq4X/5ZWwfEe1Q1crZO/UKENGxIPCfKBbD4U2bNvo17qEeAHYJNA3+jjtuW2x4TgbAAmhyATRNy+XauK/vndaxsfEXFwk+0SIv/kNR/d2rOzwAc+TIu5ExnCeiR2vA9weB3zNXeM/zImutSUzQWfgYUpnNlapa6eCVP3slIjoShheGN2++Z1b4q6/+Q3T69Jng7Nlz0hAmODFxhq+4ol1S4AHAF5Fe3286u2PH1v5Dh9724nOX9Hf8+IfllpaWm8Mw3E2Eo4wGMMGVK1cLM6fBJ9q6cjna39W1c0tX14PW9/2q8JlMy01hGL4C4GlV/IsxHRnVHTRNi2G5BnyirbPWHty+vSe/YcOt5Pv+JfDFYrgfwBYAUNX1jGkTrDtoLU1E7CzwybEWwBsvvfSPe9evvxHGsKbAg4imwk1yBRTVTRCe5xlr7WzwibYGwOsHDry1O4qi/pnwAMDMEBEkL5YToGlaGP7E1tpaJlhNW2ut3e953rZiMfxnJXxlu4aIBJub/1gyxngiMlf4RLvRWnsQgF+tHRGp8yZYKAyUgiC4RVW75gmfaCtQ3UDLqnrUaRMsFAZKK1asuKVcLr+pqncuAD5NswAONzc3P+lsJDgD/q5Fhu/L5bJ/C8Nw1EkTXHr4tr3nzo2Obtx4NzlngssDPzKaz3d6xrBbJriM8E00mUayzvw7vEB4JaL3VfUDZjYARERgjGFrrY01FZGJtrZsoQI+ua9xIhJcKDwzHWU2T5dKpbP9/e/RNdes1h9++J7b26+TH388QwBw/fVrdGjoFJ869aXOgPcQJ0TQyPDd3Q+Pbtq0sQnTma0IF2e4Es2bCY965wQXA/67777nBX4XBlA/E6wzvEG8SFIXE3QAPtGWPyfoELyH+BXAZQq/vCboIPzymaCD8Mtngo7CJ9rSmqDj8Etrgg0Av3Qm2CDwS2OCDQK/NCbYQPCJtngm2IDwi2eCDQq/OCbYwPC/3wQbGD7dBEUkuuqqHHd0bLDbtj0iJ09+wu3t15XiFFM0mXY6zfff/+dSc3PDwieaoXy+M6mgrKzGWjU+Pp5nNq1xchEAWESsMcZYa4WZPVXtmseKjWvwF+cEK+vwkmosa22yNj8FlSxRz3Oh0kl4JCY4nyLEBWiuwk+a4PnzRXsZwk+ZIKlaam1dtSquvb1c4BONiJmzqvoiEe26zOA9ABER0X+I8CfVqcWE3wsPZnqf2ezq7n74Z5fhEQdCD4poNXgBcGEhAyKiH5TL5XOOwzMAZlWli+vtpwuPmflxAF/PdzYwM6dVajqkEQDLafBB4PdYa//d1OQ9parDc4WPD4n7dQG0lmbiJ6Uz4Z8oFsPhzZvv8ffs+Uu/MaYHwDdzhIeIYGLijFOFFymaXlQ9NbPeXkSijz/+xPT07DxGRI8T0bdzeRWMMbxy5WpxCDTdBIloSCR9s4G1loaGvsZzzz1zAsBjyUyoNRustXZGdUa9QWua4CPM/Krvp282KJVK3ueff6GHDx84bozZDWB4FhN0CbR2JLhly708PPytd+21qyNjTM2LiAiFwkDZ87xt1trXAATVZgMz77LWvpXPd85l20pdI0G21uratTfMCg8AhcJAOZNpucla+0AaPIBIRCYGB080hAl6ACAis15UreS8CrwFcLitLXu8UPgw2YvoAmjNSHDWJzUP+L5crm3vyMjoyMDAR67DT5ogZskJzhe+SilavUFrR4KYzglectGzzz4ZZTKZm4vF8NX/M/hEq7owwgCQybREvb37gmKxuBvAfcD0NpNKwwNwKJfLTpWfVoHnKl/CFU05fvoUN9D4ExWLIZ88+dkFIjoK4KsEXkSmBkBV/xsEwd6RkZ9H8/lOJiKN+7mkP1e1/wFtM6PWK/V/BwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxNy0wOC0xMVQxMzo1NDowNC0wNDowMMrC9wEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTctMDgtMTFUMTM6NTQ6MDQtMDQ6MDC7n0+9AAAAAElFTkSuQmCC</icon>
+        </dashboard-extension>
+        <resources>
+          <resource id='name'>
+            <text locale='en_US'>SandboxContentText</text>
+          </resource>
+        </resources>
+      </manifest>
+      <referenced-views>
+        <referenced-view instances='1' viewId='Dashboard 1' />
+      </referenced-views>
+    </referenced-extension>
+  </referenced-extensions>
+</workbook>

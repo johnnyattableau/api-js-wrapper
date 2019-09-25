@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dual Filters</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
+    <!-- Extensions Library (this will be hosted on a CDN eventually) -->
+    <script src="http://localhost:7755/extensions-api.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <h2>Filters Test</h2>
+        <button id="clear" class="btn btn-primary">clear results</button>
+        <div id="results"></div>
+      </div>
+  </body>
+  <script>
+    function log(message) {
+      $("#results").append('<p style="color:green;">' + message + '</p>');
+    }
+
+    $(document).ready(function () {
+      tableau.extensions.initializeAsync().then(function() {
+   
+        var parameters = tableau.extensions.dashboardContent.dashboard.getParametersAsync().then(function(parameters) {
+          parameters.forEach(function(parameter) {
+            log('Register parameter: ' + parameter.name);
+            parameter.addEventListener(tableau.TableauEventType.ParameterChanged, (event) => {
+                event.getParameterAsync().then((eventParameter) => {
+                  log('->' + parameter.name + '/' + eventParameter.name + ' : ' + event.type);
+                });
+            });
+          });
+        });
+
+        var dashboardName = tableau.extensions.dashboardContent.dashboard.name;
+        var worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
+        worksheets.forEach(function(worksheet) {
+          log('Registering: ' + worksheet.name);
+          worksheet.addEventListener(tableau.TableauEventType.FilterChanged, (event) => {
+            log('-> ' + '/' + dashboardName + '/' + worksheet.name + '/' + event.worksheet.name + ' : ' + event.type);
+          });
+        });
+      }, function(err) {
+        fail('initialize' + err);
+        $("#tally").append('InitializeAsync failed! ... aborting test run' + '<br/>').css('color', 'Red');
+      });
+    });
+
+    $("#clear").click(function() {
+      $("#results").text('');
+    })
+
+  </script>
+</html>

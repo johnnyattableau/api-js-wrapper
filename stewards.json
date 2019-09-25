@@ -1,0 +1,16 @@
+{
+  "architectureTeam": "",
+  "codeReviewPolicy": "StewardApproval",
+  "comments": [],
+  "stewardTeam": {
+    "comments": ["stewards listed below is the review alias, because of auto-adding bot. frelardteam is outlook alias, extensibility is gitlab team"],
+    "slackChannel": "#help-devplat",
+    "stewards": [
+      "mr/extensions"
+    ],
+    "teamOwner": "lgraber",
+    "teamType": "scrum",
+    "tfsAreaPath": "Tableau-Dev\\Data\\Developer Platform\\Extensions and Embedding (JSAPI)"
+  },
+  "tfsAreaPath": "Tableau-Dev\\Data\\Developer Platform\\Extensions and Embedding (JSAPI)"
+}

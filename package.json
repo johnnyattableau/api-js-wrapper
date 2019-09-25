@@ -1,0 +1,37 @@
+{
+  "name": "api-js-wrapper",
+  "version": "1.0.0",
+  "description": "Wrapper project for Javascript-based APIs",
+  "main": "index.js",
+  "repository": "https://gitlab.tableausoftware.com/extensibility/api-js-wrapper.git",
+  "author": "Samm <sdesmond@tableau.com>",
+  "dependencies": {
+    "amdefine": "1.0.1",
+    "child_process": "1.0.2",
+    "colors": "^1.1.2",
+    "concurrently": "3.5.1",
+    "express": "4.16.2",
+    "fs-extra": "5.0.0",
+    "on-build-webpack": "0.1.0",
+    "source-map-loader": "0.2.3",
+    "webpack": "3.11.0",
+    "yarn": "1.3.2",
+    "request": "2.81.0"
+  },
+  "scripts": {
+    "bundle-platform-and-external": "node ./node_modules/webpack/bin/webpack.js --config ./scripts/webpack.config.js",
+    "compile-watch": "node ./scripts/compile-watch-all.js",
+    "dev": "./node_modules/.bin/concurrently \"yarn dev-server\" \"yarn compile-watch\"",
+    "dev-server": "node ./scripts/dev-server",
+    "dev-server-cur-rel": "node ./scripts/dev-server --current-release",
+    "link-projects": "node ./scripts/link-projects.js",
+    "unlink-projects": "node ./scripts/unlink-projects.js",
+    "git-cmd": "node ./scripts/generic-command.js --command git",
+    "yarn-cmd": "node ./scripts/generic-command.js --command yarn",
+    "extver": "yarn --cwd ../api-external-js/ ver",
+    "download-latest-external": "node ./scripts/download-latest-external-libs.js"
+  },
+  "downloadLibConfig": {
+    "artifactory": "https://artifactory.prod.tableautools.com/artifactory/"
+  }
+}

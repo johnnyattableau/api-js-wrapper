@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Example Extensions</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
+    <!-- Extensions Library (this will be hosted on a CDN eventually) -->
+    <script src="http://localhost:7755/extensions-api.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <h1>Desktop Bootstrap Test</h1>
+        <button id="initTableauButton" class="btn btn-primary">tableau.initializeAsync()</button>
+      </div>
+      <div>
+        <h1>Desktop Settings Test</h1>
+        <button id="settings" class="btn btn-primary">Save Settings</button>
+      </div>
+      <div>
+        <h1>Summary Data Test</h1>
+        <button id="summary" class="btn btn-primary">Get Summary Data</button>
+      </div>
+      <div>
+        <h1>Desktop Filter Test </h1>
+        <button id="filter" class="btn btn-primary">apply filter async</button>
+      </div>
+      <div>
+        <h1>Wrong Filter Field </h1>
+        <button id="filter-error" class="btn btn-primary">apply filter async</button>
+      </div>
+      <div>
+        <h1>Clear Filter Field </h1>
+        <button id="clear-filter" class="btn btn-primary">clear filter</button>
+      </div>
+      <div>
+        <h1>apply Range Filter </h1>
+        <button id="date-range-filter" class="btn btn-primary">apply Range Filter</button>
+      </div>
+      <div>
+        <h1>Add Filter Event </h1>
+        <button id="add-filter-event" class="btn btn-primary">Add Filter Event</button>
+      </div>
+
+      <div>
+        <h1>Add Selection Event </h1>
+        <button id="add-selection-event" class="btn btn-primary">Add Selection Event</button>
+      </div>
+
+	    <div>
+        <h1>Clear Selection marks </h1>
+        <button id="clear-selection-marks" class="btn btn-primary">clear selection marks</button>
+      </div>
+      <div>
+        <h1>Selection marks </h1>
+        <button id="selection-marks" class="btn btn-primary">Selection marks</button>
+      </div>
+      <div>
+        <h1>Get Selection marks </h1>
+        <button id="get-selection-marks" class="btn btn-primary">Get Selection marks</button>
+      </div>
+      <div>
+        <h1>selection marks by id</h1>
+        <button id="id-marks" class="btn btn-primary">selection marks by id</button>
+      </div>
+      <div>
+        <h1>Refresh DataSource</h1>
+        <button id="refresh-data-source" class="btn btn-primary">Refresh DataSource</button>
+      </div>
+      <div>
+        <h1>Get Filters</h1>
+        <button id="get-filters" class="btn btn-primary">Get Filters</button>
+      </div>
+      <div>
+        <h1>Get Filter Domain</h1>
+        <button id="get-filter-domain" class="btn btn-primary">Get Filter Domain</button>
+      </div>
+      <div>
+        <h1>Get Active Tables</h1>
+        <button id="get-active-tables" class="btn btn-primary">Get Active Tables</button>
+      </div>
+      <div>
+        <h1>Get Connection Summaries</h1>
+        <button id="get-connection-summaries" class="btn btn-primary">Get Connection Summaries</button>
+      </div>
+      <div>
+        <h1>Get Datasources</h1>
+        <button id="get-datasources" class="btn btn-primary">Get Datasources</button>
+      </div>
+      <div>
+        <h1>Permission Check</h1>
+        <button id="permission-check" class="btn btn-primary">Permission Check</button>
+      </div>
+      <div>
+        <h1>Hide all floating zones</h1>
+        <button id="hide" class="btn btn-primary">Hide</button>
+      </div>
+      <div>
+        <h1>Show all floating zone</h1>
+        <button id="show" class="btn btn-primary">Show</button>
+      </div>
+      <div>
+        <h1>API Version</h1>
+        <button id="api" class="btn btn-primary">API Version</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    $("#initTableauButton").click(function() {
+      tableau.extensions.initializeAsync().then(function() {
+        console.log("Done!!!");
+        console.log(tableau.extensions.dashboardContent.dashboard);
+        console.log(tableau.extensions.environment);
+      }, function(err) {
+        console.log("Error!!!: " + err);
+      });
+    })
+
+    $("#settings").click(function() {
+      console.log(tableau.extensions.dashboardContent.dashboard);
+      console.log(tableau.extensions.environment);
+      tableau.extensions.settings.set("testSettingsKey", "testSettingsValue");
+      tableau.extensions.settings.set("testSettingsKey2", "testSettingsValue2");
+      tableau.extensions.settings.erase("testSettingsKey2");
+
+      console.log("Settings IsModified: " + tableau.extensions.settings.isModified);
+      tableau.extensions.settings.saveAsync().then(() => {
+        console.log("Saved Settings: " + JSON.stringify(tableau.extensions.settings.getAll()));
+      });
+    })
+
+    $('#summary').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      console.log("found worksheet" + worksheet.name);
+      worksheet.getSummaryDataAsync().then((dataTable) => {
+        console.log(dataTable);
+      });
+    })
+
+    $('#filter').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      console.log("found worksheet" + worksheet.name);
+      console.log(worksheet);
+      worksheet.applyFilterAsync("Category", ["Furniture"], tableau.FilterUpdateType.Replace);
+    })
+
+    $('#filter-error').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      console.log("found worksheet" + worksheet.name);
+      console.log(worksheet);
+      worksheet.applyFilterAsync("Category", ["Furnitures"], tableau.FilterUpdateType.Replace);
+    })
+
+    $('#clear-filter').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      console.log("found worksheet" + worksheet.name);
+      console.log(worksheet);
+      worksheet.clearFilterAsync("Category");
+    })
+
+    $('#date-range-filter').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      console.log("found worksheet" + worksheet.name);
+      console.log(worksheet);
+      var date1 = new Date('2011');
+      var date2 = new Date('2014');
+      worksheet.applyRangeFilterAsync("Order Date", {min: date1, max: date2});
+    })
+
+    $('#clear-selection-marks').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      console.log("found worksheet" + worksheet.name);
+      console.log(worksheet);
+      worksheet.clearSelectedMarksAsync();
+    })
+
+    $('#get-selection-marks').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      console.log("found worksheet" + worksheet.name);
+      console.log(worksheet);
+      worksheet.getSelectedMarksAsync().then(response => {
+        console.log('Inside here');
+        console.log(JSON.stringify((response.data)[0].marksInfo));
+        const firstMark = ((response.data)[0].marksInfo)[0];
+        const marks = [];
+        marks.push(firstMark);
+        worksheet.clearSelectedMarksAsync();
+        worksheet.selectMarksByIdAsync(marks, 'add');
+      });
+    })
+
+    $('#id-marks').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      console.log("found worksheet" + worksheet.name);
+      console.log(worksheet);
+      const mark1 = {
+        tupleId: 2
+      };
+      const mark2 = {
+        tupleId: 3
+      };
+      const marks = [];
+      marks.push(mark1);
+      marks.push(mark2);
+      worksheet.selectMarksByIdAsync(marks, 'add');
+    })
+    $('#add-filter-event').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      console.log("found worksheet" + worksheet.name);
+      worksheet.addEventListener(tableau.TableauEventType.FilterChanged, (event) => {
+        console.log(event.type);
+        console.log(event.worksheet.name);
+      });
+    })
+
+    $('#add-selection-event').click(() => {
+      var worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
+      console.log("found worksheet");
+      worksheets.forEach((worksheet) => {
+        worksheet.addEventListener(tableau.TableauEventType.MarkSelectionChanged, (event) => {
+          console.log(event.type);
+          console.log(event.worksheet.name);
+          console.log(event);
+        });
+      });
+    })
+
+    $('#get-filters').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      console.log("found worksheet" + worksheet.name);
+      worksheet.getFiltersAsync().then((filters) => {
+        console.log(filters);
+      });
+    })
+
+    $('#get-filter-domain').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      worksheet.getFiltersAsync().then((filters) => {
+        console.log(filters);
+        filters.forEach(filter => {
+          if (filter.filterType === tableau.FilterType.Categorical) {
+            filter.getDomainAsync().then((domain) => {
+              console.log(domain);
+            });
+            filter.getDomainAsync(tableau.FilterDomainType.Database).then((domain) => {
+              console.log(domain);
+            });
+          } else if (filter.filterType === tableau.FilterType.Range) {
+            filter.getDomainAsync(tableau.FilterDomainType.Database).then((domain) => {
+              console.log(domain);
+            });
+            filter.getDomainAsync(tableau.FilterDomainType.Relevant).then((domain) => {
+              console.log(domain);
+            });
+          }
+        })
+      });
+    })
+
+    $('#selection-marks').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      console.log("found worksheet" + worksheet.name);
+      console.log(worksheet);
+      //Tuple id based selection mark
+      /*const mark1 = {
+        tupleId: 2
+      };*/
+      // Range based selection mark
+      /*const mark2 = {
+          fieldName: 'SUM(Profit)',
+          value: {min: 0, max: 5000}
+      };*/
+      //Hierarchy based selection mark
+      /*const mark3 = {
+        fieldName: '[Product Category]',
+        value: ['Office Supplies']
+      };*/
+      //Quantitative based selection mark
+      const mark4 = {
+        fieldName: 'State',
+        value: ['California', 'Washington']
+      };
+      const marks = [];
+      //marks.push(mark1);
+      //marks.push(mark2);
+      //marks.push(mark3);
+      marks.push(mark4);
+      worksheet.selectMarksByValueAsync(marks, tableau.SelectionUpdateType.Replace);
+    })
+    
+    $('#refresh-data-source').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      worksheet.getDataSourcesAsync().then(datasources => {
+        datasources[0].refreshAsync().then(() => {
+          console.log("refreshed data");
+        });
+      });
+    })
+    $('#get-active-tables').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      worksheet.getDataSourcesAsync().then(datasources => {
+        datasources[0].getActiveTablesAsync().then((result) => {
+          console.log("got active tables: " + result);
+        });
+      });
+    })
+    $('#get-connection-summaries').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      worksheet.getDataSourcesAsync().then(datasources => {
+        datasources[0].getConnectionSummariesAsync().then((result) => {
+          console.log("got connection summaries: " + result);
+        });
+      });
+    })
+    $('#get-datasources').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      worksheet.getDataSourcesAsync().then(datasources => {
+        console.log(datasources[0].name);
+      }, (error) => {
+        console.log(error);
+      });
+    })
+    $('#permission-check').click(() => {
+      var worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+      worksheet.getUnderlyingDataAsync().then((success) => {
+        console.log("get underlying data worked!")
+      }, (err) => {
+        console.log(err);
+      });
+    });
+
+    function getVisibilityMap(showHide) {
+      var zones = tableau.extensions.dashboardContent.dashboard.objects;
+      var zoneVisibilityMap = {};
+      zones.forEach((zone) => {
+        if (zone.isFloating) {
+          console.log('found zone to show/hide: ' + zone.name);
+          zoneVisibilityMap[zone.id] =  showHide;
+        }
+      });
+      return zoneVisibilityMap;
+    }
+
+    $('#hide').click(() => {
+      var zoneVisibilityMap = getVisibilityMap(tableau.ZoneVisibilityType.Hide);
+      tableau.extensions.dashboardContent.dashboard.setZoneVisibilityAsync(zoneVisibilityMap).then(() => {
+        console.log("hide worked!")
+      }, (err) => {
+        console.log(err);
+      });
+    });
+
+    $('#show').click(() => {
+      var zoneVisibilityMap = getVisibilityMap(tableau.ZoneVisibilityType.Show);
+      tableau.extensions.dashboardContent.dashboard.setZoneVisibilityAsync(zoneVisibilityMap).then(() => {
+        console.log("show worked!")
+      }, (err) => {
+        console.log(err);
+      });
+    });
+
+    $('#api').click(() => {
+      console.log(tableau.extensions.environment.apiVersion);
+      alert('Current api version = ' + tableau.extensions.environment.apiVersion);
+    });
+  </script>
+</html>

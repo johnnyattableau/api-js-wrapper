@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>UI - Parent</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
+    <!-- Extensions Library (this will be hosted on a CDN eventually) -->
+    <script src="http://localhost:7755/extensions-api.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <h1>UI Namespace Test</h1>
+        <button id="displayDialog" class="btn btn-primary">Launch Dialog</button>
+      </div>
+      <div id="results"></div>
+    </div>
+  </body>
+  <script>
+    function configure() {
+      tableau.extensions.ui.displayDialogAsync(popupUrl, 'openPayload', { height: 500, width: 500 }).then((payload) => {
+        console.log("Dialog closed with payload: " );
+        console.log(payload);
+        
+        var settings = tableau.extensions.settings.getAll();
+        var settingKeys = Object.keys(settings);
+        
+        settingKeys.forEach(element => {
+          $("#results").append('<p style="color:green;">' + element + " = " + settings[element] + '</p>');
+        });
+      }).catch((error) => {
+        // This will be hit if the user manually closes the dialog
+        switch(error.errorCode) {
+          case tableau.ErrorCodes.DialogClosedByUser:
+            console.log("Dialog was closed by user");
+            break;
+          default:
+            console.error(error.message);
+        }
+      });
+    }
+
+    var popupUrl = './UINamespaceExample_Popup.html';
+    tableau.extensions.initializeAsync({'configure': configure, 'configure': configure}).then(function() {
+      tableau.extensions.settings.addEventListener(tableau.TableauEventType.SettingsChanged, (settingsEvent) =>{
+        console.log("settings have been updated: " + JSON.stringify(settingsEvent.newSettings));
+      });
+    });
+
+    $('#displayDialog').click(() => {
+      configure();
+    });
+  </script>
+</html>

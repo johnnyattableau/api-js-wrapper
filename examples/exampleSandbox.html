@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Example Extensions</title>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  </head>
+  <body>
+    <iframe id="extension-iframe" sandbox='allow-scripts allow-modals' src=''  style='position:fixed; top:30px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;'></iframe>
+    <select name="Selection" id="mySelect">
+      <option value=""> Pick Extension (and reload after each test)</option>
+      <option value="/examples/UINamespaceExample_Parent.Sandbox.html">UINamespace</option>
+      <option value="/examples/index.html">Local</option>
+      <option value="/examples/simple.html">Simple</option>
+      <option value="/tests/autoTest.html">Auto</option>
+    </select> 
+  </body>
+  <script>
+    console.log("Sandboxing.js loaded");
+    let EXTENSION_ID;
+    let extensionWindow;
+
+    window.onload = function () {
+      EXTENSION_ID = "extension-iframe";
+      extensionWindow = document.getElementById(EXTENSION_ID).contentWindow;
+    };
+
+    window.addEventListener("message", receiveMessage, false);
+
+    function receiveMessage(event) {
+      forwardMessage(event);
+    }
+
+    function forwardMessage(event) {
+      /**
+       * When code like this is inserted in UINamespace, we need to validate whether to use window.parent vs window.opener since, UINamespace doesnt have a parent
+      */
+      if (event.source == window.parent) {
+        extensionWindow.postMessage(event.data, '*');
+      } else {
+        window.parent.postMessage(event.data, '*');
+      }
+    }
+
+    $(document).ready(function() {
+      // SELECT MENU
+      $("#mySelect").change(function() {
+        var value = $(this).val();
+
+        //IFRAME TAG
+        console.log(value);
+        $("#extension-iframe").attr('src', value);
+      })
+    });
+  </script>
+</html>
+
